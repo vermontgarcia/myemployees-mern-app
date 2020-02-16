@@ -1,10 +1,11 @@
 import React, {Component} from 'react';
 import Employee from './Employee';
-import {isLoggedIn} from '../Services/authService';
+import {isLoggedIn, logout} from '../Services/authService';
 import {employeesList} from '../Services/employeeService';
 import {Link} from 'react-router-dom';
 
 import {Layout, Icon, BackTop, message, Skeleton} from 'antd';
+import Nav from './Nav';
 
 const {Header, Footer, Content} = Layout;
 
@@ -17,9 +18,16 @@ class Home extends Component {
     }
   }
 
+  handleLogOut = () => {
+    logout(this.props.history)
+  }
+
   componentDidMount(){
     const token = localStorage.getItem('token');
     token ? isLoggedIn(this.props.history) : this.props.history.push('/login');
+
+    const user = JSON.parse(localStorage.getItem('user'))
+    user ? this.setState({user}) : this.props.history.push('/login');
 
     let {list} = this.state;
 
@@ -36,12 +44,12 @@ class Home extends Component {
   }
 
   render(){
-    const {list} = this.state;
+    const {list, user} = this.state;
     return (
       <div>
         <Layout>
           <Header>
-            Header
+            <Nav user={user} handleLogOut={this.handleLogOut}/>
           </Header>
           <Content>
             <div className="cards-envelop">
