@@ -1,22 +1,43 @@
-import React from 'react';
-import logo from '../logo.svg';
-//import logo from './logo.svg';
+import React, {Component} from 'react';
+import Employee from './Employee';
+import {isLoggedIn} from '../Services/authService';
+import {Link} from 'react-router-dom';
 
-const Home = () => (
-  <header className="App-header">
-    <img src={logo} className="App-logo" alt="logo" />
-    <p>
-      Edit <code>src/App.js</code> and save to reload.
-    </p>
-    <a
-      className="App-link"
-      href="https://reactjs.org"
-      target="_blank"
-      rel="noopener noreferrer"
-    >
-      Learn React
-    </a>
-  </header>
-)
+import {Layout, Icon, BackTop} from 'antd';
+
+const {Header, Footer, Content} = Layout;
+
+class Home extends Component {
+
+  componentWillMount(){
+    const token = localStorage.getItem('token');
+    token ? isLoggedIn(this.props.history) : this.props.history.push('/login');
+  }
+
+  render(){
+    //const {user} = this.props.state;
+    return (
+      <div>
+        <Layout>
+          <Header>
+            Header
+          </Header>
+          <Content>
+            <Employee />
+          </Content>
+          <Footer>
+            Footer
+          </Footer>
+        </Layout>
+        <div>
+          <BackTop id="back-top-custom">
+            <div className="ant-back-top-inner"><Icon type="to-top" /></div>
+          </BackTop>
+        </div>
+      </div>
+    )
+  }
+}
+  
 
 export default Home;
