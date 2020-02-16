@@ -27,7 +27,7 @@ export const login = (user, history) => {
       history.push('/');
     })
     .catch(err => {
-      err.response.data.msg ? message.error(err.response.data.msg) : console.log('No Message');
+      message.error(err.response.data.msg);
     });
 }
 
@@ -39,11 +39,7 @@ export const logout = history => {
 
 export const isLoggedIn = history => {
   const token = localStorage.getItem('token');
-  axios.get(`${base_url}/auth/loggedin`, {
-    headers: {
-      'x-access-token': token
-    }
-  })
+  axios.get(`${base_url}/auth/loggedin`, {headers: {'x-access-token': token}})
     .then(res => {
       message.success(res.data.msg)
     })
