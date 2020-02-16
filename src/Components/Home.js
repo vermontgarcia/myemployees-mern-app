@@ -1,21 +1,42 @@
 import React, {Component} from 'react';
 import Employee from './Employee';
 import {isLoggedIn} from '../Services/authService';
+import {employeesList} from '../Services/employeeService';
 import {Link} from 'react-router-dom';
 
-import {Layout, Icon, BackTop} from 'antd';
+import {Layout, Icon, BackTop, message, Skeleton} from 'antd';
 
 const {Header, Footer, Content} = Layout;
 
 class Home extends Component {
+  constructor(){
+    super();
+    this.state = {
+      user: {},
+      list: []
+    }
+  }
 
-  componentWillMount(){
+  componentDidMount(){
     const token = localStorage.getItem('token');
     token ? isLoggedIn(this.props.history) : this.props.history.push('/login');
+
+    let {list} = this.state;
+
+    employeesList()
+      .then(res => {
+        list = res.data.list
+        this.setState({list})
+
+      })
+      .catch(err=>{
+        message.error(err.response.data.msg);
+      })
+
   }
 
   render(){
-    //const {user} = this.props.state;
+    const {list} = this.state;
     return (
       <div>
         <Layout>
@@ -23,7 +44,9 @@ class Home extends Component {
             Header
           </Header>
           <Content>
-            <Employee />
+            <div className="cards-envelop">
+              {list.map((employee, index)=><Employee key={index} employee={employee} />)}
+            </div>
           </Content>
           <Footer>
             Footer
