@@ -1,4 +1,6 @@
 import axios from 'axios';
+
+import {writeLog} from '../Services/logService'
 import {message} from 'antd';
 
 const base_url = window.location.hostname === 'localhost' ? 'http://localhost:3500/api' : 'https://my-employees-2020.herokuapp.com/api';
@@ -10,6 +12,11 @@ export const signup = (user, history) => {
     .then(res=>{
       localStorage.setItem('token', res.data.token);
       localStorage.setItem('user', JSON.stringify(res.data.user));
+
+      // Writing log to database
+      let log = {userId: res.data.user._id, logName: 'User signup'}
+      writeLog(log);
+
       message.success(res.data.message);
       history.push('/');
     })
@@ -23,6 +30,11 @@ export const login = (user, history) => {
     .then(res => {
       localStorage.setItem('token', res.data.token);
       localStorage.setItem('user', JSON.stringify(res.data.user));
+
+      // Writing log to database
+      let log = {userId: res.data.user._id, logName: 'User login'}
+      writeLog(log);
+
       message.success(res.data.msg);
       history.push('/');
     })

@@ -2,6 +2,7 @@ import React, {Component} from 'react';
 import Employee from './Employee';
 import {isLoggedIn, logout} from '../Services/authService';
 import {employeesList} from '../Services/employeeService';
+import {writeLog} from '../Services/logService';
 import {Link} from 'react-router-dom';
 
 import {Layout, Icon, BackTop, message, Skeleton} from 'antd';
@@ -22,13 +23,15 @@ class Home extends Component {
     logout(this.props.history)
   }
 
-
   handleLog = (employeeId) => {
-    console.log("Writing to log", employeeId)
     let {user} = this.state 
-    console.log(user)
+    let log = {
+      userId: user._id,
+      employeeId: employeeId,
+      logName: 'Employee consult'
+    }
+    writeLog(log);
   }
-
 
   componentDidMount(){
     const token = localStorage.getItem('token');
