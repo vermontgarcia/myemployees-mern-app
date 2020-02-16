@@ -5,7 +5,7 @@ import {employeesList} from '../Services/employeeService';
 import {writeLog} from '../Services/logService';
 import {Link} from 'react-router-dom';
 
-import {Layout, Icon, BackTop, message, Skeleton} from 'antd';
+import {Layout, Icon, BackTop, message} from 'antd';
 import Nav from './Nav';
 
 const {Header, Footer, Content} = Layout;
