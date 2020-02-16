@@ -22,6 +22,14 @@ class Home extends Component {
     logout(this.props.history)
   }
 
+
+  handleLog = (employeeId) => {
+    console.log("Writing to log", employeeId)
+    let {user} = this.state 
+    console.log(user)
+  }
+
+
   componentDidMount(){
     const token = localStorage.getItem('token');
     token ? isLoggedIn(this.props.history) : this.props.history.push('/login');
@@ -53,7 +61,7 @@ class Home extends Component {
           </Header>
           <Content>
             <div className="cards-envelop">
-              {list.map((employee, index)=><Employee key={index} employee={employee} />)}
+              {list.map((employee, index)=><Employee key={index} handleLog={this.handleLog} employee={employee} />)}
             </div>
           </Content>
           <Footer>

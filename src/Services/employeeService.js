@@ -1,5 +1,4 @@
 import axios from 'axios';
-import {message} from 'antd';
 
 const base_url = window.location.hostname === 'localhost' ? 'http://localhost:3500/api' : 'https://my-employees-2020.herokuapp.com/api';
 
