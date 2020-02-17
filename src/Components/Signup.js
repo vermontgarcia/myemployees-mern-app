@@ -52,7 +52,7 @@ class SignupForm extends Component {
     return(
       <div className='signup-envelop'>
         <div>
-          <img src='/search.png' alt='logo'/>
+          <img src='/logo192.png' alt='logo'/>
         </div>
         <div>
           <Form onSubmit={this.handleSubmit}>
@@ -88,7 +88,7 @@ class SignupForm extends Component {
                 }],
               })(
                 <Input
-                  prefix={<Icon type="mail" style={{ color: 'rgba(0,0,0,.25)' }} />}
+                  prefix={<Icon type="apartment" style={{ color: 'rgba(0,0,0,.25)' }} />}
                   placeholder='Department'/>
               )}
             </FormItem>
@@ -99,7 +99,7 @@ class SignupForm extends Component {
                 }],
               })(
                 <Input
-                  prefix={<Icon type="mail" style={{ color: 'rgba(0,0,0,.25)' }} />}
+                  prefix={<Icon type="team" style={{ color: 'rgba(0,0,0,.25)' }} />}
                   placeholder='Position'/>
               )}
             </FormItem>
@@ -135,12 +135,12 @@ class SignupForm extends Component {
               {getFieldDecorator('agreement', {
                 valuePropName: 'checked',
               })(
-                <Checkbox>He leido el <Link to='/agreement'>acuerdo</Link></Checkbox>
+                <Checkbox>I have read the <Link to='/agreement'>agreement</Link></Checkbox>
                 )}
                 <Button type="primary" htmlType="submit" className="login-form-button">
-                  Registrar
+                  Register
                 </Button>
-                Ya tienes una cuenta? <Link to='/login' >Inicia sesión</Link>
+                Already have an account? <Link to='/login' >Login</Link>
             </FormItem>
           </Form>
         </div>

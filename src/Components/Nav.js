@@ -32,13 +32,6 @@ class Nav extends Component {
           <Icon onClick={this.showDrawer} type='menu' className="icon-nav" />
         </div>
         <div>
-          <NavLink to='/' >
-            <span className='nav-logo'>
-              <i className="fas fa-search"></i>
-            </span>
-          </NavLink>
-        </div>
-        <div>
           {user ? <NavLink to='/'><Avatar src={user.profilePicture === 'avatar' ? '/avatar.png' : user.profilePicture} /></NavLink> : null}
         </div>
         <Drawer
@@ -53,7 +46,7 @@ class Nav extends Component {
           <div><Link to='/chart' ><Icon type="file-search" /> Log Char</Link></div>
           <div><Link to='/' ><Icon type="file-done" /> Employees</Link></div>
           <Divider />
-          <div><Link to='/' ><Icon type="user" /> Mi Profile</Link></div>
+          <div><Link to='/' ><Icon type="user" /> My Profile</Link></div>
           <div><Link to='/' ><Icon type="setting" /> Settings</Link></div>
           <Divider />
           <div onClick={this.props.handleLogOut} ><Link to=''><Icon type="logout" /> Log out</Link></div>

@@ -3,9 +3,8 @@ import Employee from './Employee';
 import {isLoggedIn, logout} from '../Services/authService';
 import {employeesList} from '../Services/employeeService';
 import {writeLog} from '../Services/logService';
-import {Link} from 'react-router-dom';
 
-import {Layout, Icon, BackTop, message, Modal, Card} from 'antd';
+import {Layout, Icon, BackTop, message, Modal} from 'antd';
 import Nav from './Nav';
 
 const {Header, Footer, Content} = Layout;
@@ -16,7 +15,6 @@ class Home extends Component {
     this.state = {
       user: {},
       list: [],
-      loading: false,
       visible: false,
       employee: {}
     }
@@ -73,7 +71,7 @@ class Home extends Component {
   }
 
   render(){
-    const {list, user, employee, visible, loading} = this.state;
+    const {list, user, employee, visible} = this.state;
     return (
       <div>
         <Layout>
@@ -94,7 +92,7 @@ class Home extends Component {
             >
               <div className="employee-details-envelope">
                 <div className="details-card">
-                  <img className="details-image" src={'avatar' === 'avatar' ? '/avatar.png' : "this.props.employee.profilePicture"} alt="{employee.name}" />
+                  <img className="details-image" src={employee.profilePicture === 'avatar' ? '/avatar.png' : employee.profilePicture} alt={employee.name} />
                 </div>
                 <div className="details-card details-card-text">
                   <p><span className="details-card-text-tag">Name: </span> {employee.name} </p>

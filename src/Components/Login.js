@@ -23,7 +23,7 @@ class LoginForm extends Component {
     return (
       <div className='login-envelop'>
         <div>
-          <img src='/search.png' alt='logo'/>
+          <img src='/logo192.png' alt='logo'/>
         </div>
         <div>
           <Form onSubmit={this.handleSubmit} className="form-envelop">
@@ -32,21 +32,21 @@ class LoginForm extends Component {
             </div>
             <FormItem>
               {getFieldDecorator('email', {
-                rules: [{ required: true, message: 'Por favor ingresa tu email!' }],
+                rules: [{ required: true, message: 'Please enter your email!' }],
               })(
                 <Input
                   prefix={<Icon type="mail" style={{ color: 'rgba(0,0,0,.25)' }} />}
-                  placeholder="user@compareit.com"/>
+                  placeholder="name.surname@mycompany.com"/>
               )}
             </FormItem>
             <FormItem>
               {getFieldDecorator('password', {
-                rules: [{ required: true, message: 'Ingresa tu contraseña!' }],
+                rules: [{ required: true, message: 'Please enter your password!' }],
               })(
                 <Input
                   prefix={<Icon type="lock" style={{ color: 'rgba(0,0,0,.25)' }} />}
                   type="password"
-                  placeholder="Tu contraseña"/>
+                  placeholder="Your password"/>
               )}
             </FormItem>
             <FormItem>
@@ -54,13 +54,13 @@ class LoginForm extends Component {
                 valuePropName: 'checked',
                 initialValue: true,
               })(
-                <Checkbox>Recuédame en este dispositivo</Checkbox>
+                <Checkbox>Remember me</Checkbox>
               )}
-              <Link className="login-form-forgot" to='/forgot'>Olvidé mi contraseña</Link>
+              <Link className="login-form-forgot" to='/forgot'>Forgot my password</Link>
               <Button type="primary" htmlType="submit" className="login-form-button">
-                Iniciar sesión
+                Login
               </Button>
-              ¿No tienes una cuenta aún? <Link to='/signup'>Registrate ahora!</Link>
+              Not registered yet? <Link to='/signup'>Sign up!</Link>
             </FormItem>
           </Form>
         </div>
@@ -70,31 +70,5 @@ class LoginForm extends Component {
 }
 
 const Login = Form.create()(LoginForm);
-
-/*
-
-const Login = () => {
-  
-  const handleSubmit = (e) => {
-    e.preventDefault();
-    this.props.form.validateFields((err, values) => {
-      if (!err){
-        login(values, this.props.history)
-      }
-    });
-  }
-
-  const {getFieldDecorator} = this.props.form;
-
-  return (
-    <div>
-      Login
-    </div>
-  )
-
-
-}
-
-*/
 
 export default Login;

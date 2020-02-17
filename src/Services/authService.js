@@ -1,11 +1,10 @@
 import axios from 'axios';
-
 import {writeLog} from '../Services/logService'
 import {message} from 'antd';
 
 const base_url = window.location.hostname === 'localhost' ? 'http://localhost:3500/api' : 'https://my-employees-2020.herokuapp.com/api';
 
-// Auth services
+// Auth service modules
 
 export const signup = (user, history) => {
   axios.post(`${base_url}/auth/signup`, user)
@@ -16,7 +15,7 @@ export const signup = (user, history) => {
       // Writing log to database
       let log = {userId: res.data.user._id, logName: 'User signup'}
       writeLog(log);
-
+      
       message.success(res.data.message);
       history.push('/');
     })
@@ -52,12 +51,17 @@ export const logout = history => {
 export const isLoggedIn = history => {
   const token = localStorage.getItem('token');
   axios.get(`${base_url}/auth/loggedin`, {headers: {'x-access-token': token}})
-    .then(res => {
-      message.success(res.data.msg)
-    })
     .catch(err => {
       message.error(err.response.data.msg);
       localStorage.removeItem('token');
       history.push('/login')
     });
+}
+
+export const editUser = (user) => {
+  let formData = new FormData();
+  Object.keys(user).forEach(key => {
+    formData.append(key, user[key])
+  });
+  return axios.patch(`${base_url}/auth/edit`, formData)
 }
