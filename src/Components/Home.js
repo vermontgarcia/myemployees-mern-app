@@ -5,7 +5,7 @@ import {employeesList} from '../Services/employeeService';
 import {writeLog} from '../Services/logService';
 import {Link} from 'react-router-dom';
 
-import {Layout, Icon, BackTop, message} from 'antd';
+import {Layout, Icon, BackTop, message, Modal, Card} from 'antd';
 import Nav from './Nav';
 
 const {Header, Footer, Content} = Layout;
@@ -15,22 +15,40 @@ class Home extends Component {
     super();
     this.state = {
       user: {},
-      list: []
+      list: [],
+      loading: false,
+      visible: false,
+      employee: {}
     }
   }
+
+  showModal = () => {
+    this.setState({visible: true});
+  }
+
+  handleModal = () => {
+    this.showModal();
+  }
+
+  handleCancel = () => {
+    this.setState({ visible: false });
+  };
+
 
   handleLogOut = () => {
     logout(this.props.history)
   }
 
-  handleLog = (employeeId) => {
+  handleLog = (employee) => {
     let {user} = this.state 
     let log = {
       userId: user._id,
-      employeeId: employeeId,
+      employeeId: employee._id,
       logName: 'Employee consult'
     }
     writeLog(log);
+    this.setState({employee})
+    this.showModal()
   }
 
   componentDidMount(){
@@ -55,7 +73,7 @@ class Home extends Component {
   }
 
   render(){
-    const {list, user} = this.state;
+    const {list, user, employee, visible, loading} = this.state;
     return (
       <div>
         <Layout>
@@ -66,6 +84,27 @@ class Home extends Component {
             <div className="cards-envelop">
               {list.map((employee, index)=><Employee key={index} handleLog={this.handleLog} employee={employee} />)}
             </div>
+            <Modal
+              visible={visible}
+              centered={true}
+              width={700}
+              title='Employee Details'
+              onCancel={this.handleCancel}
+              footer={null}
+            >
+              <div className="employee-details-envelope">
+                <div className="details-card">
+                  <img className="details-image" src={'avatar' === 'avatar' ? '/avatar.png' : "this.props.employee.profilePicture"} alt="{employee.name}" />
+                </div>
+                <div className="details-card details-card-text">
+                  <p><span className="details-card-text-tag">Name: </span> {employee.name} </p>
+                  <p><span className="details-card-text-tag">Department: </span> {employee.department} </p>
+                  <p><span className="details-card-text-tag">Position: </span>{employee.position} </p>
+                  <p><span className="details-card-text-tag" >User type: </span>{employee.role} </p>
+                  <p> {employee.email} </p>
+                </div>
+              </div>
+            </Modal>
           </Content>
           <Footer>
             Footer

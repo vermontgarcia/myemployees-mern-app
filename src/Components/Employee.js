@@ -4,7 +4,7 @@ import { Card } from 'antd';
 const {Meta} = Card;
 
 const Employee = ({employee, handleLog}) => (
-  <div onClick={handleLog.bind(null, employee._id)}>
+  <div onClick={handleLog.bind(null, employee)}>
     <Card
       hoverable
       className="employee-card"

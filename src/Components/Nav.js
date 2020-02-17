@@ -39,7 +39,7 @@ class Nav extends Component {
           </NavLink>
         </div>
         <div>
-          {user ? <NavLink to='/profile'><Avatar src={user.profilePicture === 'avatar' ? '/avatar.png' : user.profilePicture} /></NavLink> : null}
+          {user ? <NavLink to='/'><Avatar src={user.profilePicture === 'avatar' ? '/avatar.png' : user.profilePicture} /></NavLink> : null}
         </div>
         <Drawer
           placement={this.state.placement}
@@ -53,7 +53,7 @@ class Nav extends Component {
           <div><Link to='/chart' ><Icon type="file-search" /> Log Char</Link></div>
           <div><Link to='/' ><Icon type="file-done" /> Employees</Link></div>
           <Divider />
-          <div><Link to='/profile' ><Icon type="user" /> Mi Profile</Link></div>
+          <div><Link to='/' ><Icon type="user" /> Mi Profile</Link></div>
           <div><Link to='/' ><Icon type="setting" /> Settings</Link></div>
           <Divider />
           <div onClick={this.props.handleLogOut} ><Link to=''><Icon type="logout" /> Log out</Link></div>
