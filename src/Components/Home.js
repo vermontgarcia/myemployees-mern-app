@@ -1,5 +1,6 @@
 import React, {Component} from 'react';
 import Employee from './Employee';
+import FooterInfo from './FooterInfo';
 import {isLoggedIn, logout} from '../Services/authService';
 import {employeesList} from '../Services/employeeService';
 import {writeLog} from '../Services/logService';
@@ -79,6 +80,7 @@ class Home extends Component {
             <Nav user={user} handleLogOut={this.handleLogOut}/>
           </Header>
           <Content>
+            <h1 className="home-title">My Company Employees Book</h1>
             <div className="cards-envelop">
               {list.map((employee, index)=><Employee key={index} handleLog={this.handleLog} employee={employee} />)}
             </div>
@@ -105,7 +107,7 @@ class Home extends Component {
             </Modal>
           </Content>
           <Footer>
-            Footer
+            <FooterInfo/>
           </Footer>
         </Layout>
         <div>
