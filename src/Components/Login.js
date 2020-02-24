@@ -35,7 +35,7 @@ class LoginForm extends Component {
                 rules: [{ required: true, message: 'Please enter your email!' }],
               })(
                 <Input
-                  prefix={<Icon type="mail" style={{ color: 'rgba(0,0,0,.25)' }} />}
+                  prefix={<Icon type="mail" className="input-icon-color" />}
                   placeholder="name.surname@mycompany.com"/>
               )}
             </FormItem>
@@ -44,7 +44,7 @@ class LoginForm extends Component {
                 rules: [{ required: true, message: 'Please enter your password!' }],
               })(
                 <Input
-                  prefix={<Icon type="lock" style={{ color: 'rgba(0,0,0,.25)' }} />}
+                  prefix={<Icon type="lock" className="input-icon-color" />}
                   type="password"
                   placeholder="Your password"/>
               )}

@@ -64,7 +64,7 @@ class SignupForm extends Component {
                 rules: [{ required: true, message: 'Please enter your name!', whitespace: true }],
               })(
                 <Input
-                  prefix={<Icon type="user" style={{ color: 'rgba(0,0,0,.25)' }} />}
+                  prefix={<Icon type="user" className="input-icon-color" />}
                   placeholder='What is your name?'/>
               )}
             </FormItem>
@@ -77,7 +77,7 @@ class SignupForm extends Component {
                 }],
               })(
                 <Input
-                  prefix={<Icon type="mail" style={{ color: 'rgba(0,0,0,.25)' }} />}
+                  prefix={<Icon type="mail" className="input-icon-color" />}
                   placeholder='name.surname@mycompany.com'/>
               )}
             </FormItem>
@@ -88,7 +88,7 @@ class SignupForm extends Component {
                 }],
               })(
                 <Input
-                  prefix={<Icon type="apartment" style={{ color: 'rgba(0,0,0,.25)' }} />}
+                  prefix={<Icon type="apartment" className="input-icon-color" />}
                   placeholder='Department'/>
               )}
             </FormItem>
@@ -99,7 +99,7 @@ class SignupForm extends Component {
                 }],
               })(
                 <Input
-                  prefix={<Icon type="team" style={{ color: 'rgba(0,0,0,.25)' }} />}
+                  prefix={<Icon type="team" className="input-icon-color" />}
                   placeholder='Position'/>
               )}
             </FormItem>
@@ -112,7 +112,7 @@ class SignupForm extends Component {
                 }],
               })(
                 <Input
-                  prefix={<Icon type="lock" style={{ color: 'rgba(0,0,0,.25)' }} />}
+                  prefix={<Icon type="lock" className="input-icon-color" />}
                   type="password"
                   placeholder="Your password"/>
               )}
@@ -126,7 +126,7 @@ class SignupForm extends Component {
                 }],
               })(
                 <Input
-                  prefix={<Icon type="lock" style={{ color: 'rgba(0,0,0,.25)' }} />}
+                  prefix={<Icon type="lock" className="input-icon-color" />}
                   type="password"
                   placeholder="Confirm your password"/>
               )}
