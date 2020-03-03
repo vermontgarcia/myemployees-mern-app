@@ -38,7 +38,17 @@ class Home extends Component {
     logout(this.props.history)
   }
 
+  handleLoggedIn = () => {
+    const token = localStorage.getItem('token');
+    token ? isLoggedIn(this.props.history) : this.props.history.push('/login');
+
+    const user = JSON.parse(localStorage.getItem('user'))
+    user ? this.setState({user}) : this.props.history.push('/login');
+  }
+
   handleLog = (employee) => {
+    this.handleLoggedIn();
+
     let {user} = this.state 
     let log = {
       userId: user._id,
@@ -51,11 +61,7 @@ class Home extends Component {
   }
 
   componentDidMount(){
-    const token = localStorage.getItem('token');
-    token ? isLoggedIn(this.props.history) : this.props.history.push('/login');
-
-    const user = JSON.parse(localStorage.getItem('user'))
-    user ? this.setState({user}) : this.props.history.push('/login');
+    this.handleLoggedIn();
 
     let {list} = this.state;
 
