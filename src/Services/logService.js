@@ -13,3 +13,7 @@ export const writeLog = (log) => {
       console.log('Log Error =====>', err.response.data.msg);
     });
 }
+
+export const logHistory = () => {
+  return axios.get(`${base_url}/log`)
+}

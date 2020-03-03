@@ -3,6 +3,8 @@ import {Switch, Route} from 'react-router-dom'
 import Home from './Components/Home';
 import Login from './Components/Login';
 import Signup from './Components/Signup';
+import Profile from './Components/Profile';
+import Chart from './Components/Chart';
 
 
 const Router = () => (
@@ -19,6 +21,16 @@ const Router = () => (
     />
     <Route exact path='/login' render={(props) => (
       <Login
+        {...props} 
+      />)}
+    />
+    <Route exact path='/profile' render={(props) => (
+      <Profile
+        {...props} 
+      />)}
+    />
+    <Route exact path='/logchart' render={(props) => (
+      <Chart
         {...props} 
       />)}
     />

@@ -43,7 +43,7 @@ class Nav extends Component {
         >
           <div><Link to='/' ><Icon type="home" /> Home</Link></div>
           <Divider />
-          <div><Link to='/chart' ><Icon type="file-search" /> Log Char</Link></div>
+          <div><Link to='/logchart' ><Icon type="file-search" /> Log Char</Link></div>
           <div><Link to='/' ><Icon type="file-done" /> Employees</Link></div>
           <Divider />
           <div><Link to='/' ><Icon type="user" /> My Profile</Link></div>
