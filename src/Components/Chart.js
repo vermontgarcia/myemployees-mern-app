@@ -1,8 +1,6 @@
 import React, {useState, useEffect} from 'react';
 import {logHistory} from '../Services/logService';
-import { Line, Radar } from 'react-chartjs-2';
-
-
+import { Radar } from 'react-chartjs-2';
 
 export default function Chart() {
   
@@ -10,7 +8,6 @@ export default function Chart() {
   const [data, setData] = useState({});
   const [dates, setDates] = useState([]);
   const [hours, setHours] = useState([]);
-  
   
   const handleRequest = () => {
     logHistory()
@@ -23,15 +20,12 @@ export default function Chart() {
           let date = [...log.created_at ].slice(0,10).join("");
           let hour = new Date (log.created_at).getHours()
 
-
           log.date = date;
           log.hour = hours
 
           dates.push(date);
           hours.push(hour);
-          
         });
-
 
         setDates(dates);
         setHours(hours);
@@ -39,7 +33,6 @@ export default function Chart() {
       })
       .catch(err => {
         console.log('ERROR =====> ',err)
-  
       })
   }
 
@@ -47,7 +40,7 @@ export default function Chart() {
     let data = {
       labels: dates,
       datasets: [{
-        label: 'Rainfall',
+        label: 'Hour',
         fill: false,
         lineTension: 0.5,
         backgroundColor: 'rgba(75,192,192,1)',
@@ -65,24 +58,21 @@ export default function Chart() {
   
   useEffect(() => {
     setChart();
-  }, [hours, dates, ])
+  }, [hours, dates])
 
 
   return (
     <div>
-      <h1>
-        Log History      
-      </h1>
-      <Line
+      <Radar
         data={data}
         options={{
           title:{
             display:true,
-            text:'Average Rainfall per month',
+            text:'History Log Day Vs Hour',
             fontSize:20
           },
           legend:{
-            display:true,
+            display:false,
             position:'right'
           }
         }}
