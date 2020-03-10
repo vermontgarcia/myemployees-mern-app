@@ -8,6 +8,8 @@ export default function Chart() {
   const [data, setData] = useState({});
   const [dates, setDates] = useState([]);
   const [hours, setHours] = useState([]);
+  const [weekday, setWeekday] = useState([]);
+  const [timesPerDay, setTimesPerDay] = useState([]);
   
   const handleRequest = () => {
     logHistory()
@@ -15,10 +17,32 @@ export default function Chart() {
         let logs = res.data.logs;
         let dates = [];
         let hours = [];
+        
+        let timesPerDay = new Array(7);
+          timesPerDay[0] = 0;
+          timesPerDay[1] = 0;
+          timesPerDay[2] = 0;
+          timesPerDay[3] = 0;
+          timesPerDay[4] = 0;
+          timesPerDay[5] = 0;
+          timesPerDay[6] = 0;
+
+        let weekday = new Array(7);
+          weekday[0] = "Sunday";
+          weekday[1] = "Monday";
+          weekday[2] = "Tuesday";
+          weekday[3] = "Wednesday";
+          weekday[4] = "Thursday";
+          weekday[5] = "Friday";
+          weekday[6] = "Saturday";
 
         logs.forEach(log => {
-          let date = [...log.created_at ].slice(0,10).join("");
-          let hour = new Date (log.created_at).getHours()
+
+          let logDate = new Date (log.created_at)
+          let date = [...log.created_at ].slice(5,10).join("");
+          let hour = logDate.getHours()
+
+          timesPerDay[logDate.getDay()] = timesPerDay[logDate.getDay()] + 1;
 
           log.date = date;
           log.hour = hours
@@ -29,6 +53,8 @@ export default function Chart() {
 
         setDates(dates);
         setHours(hours);
+        setWeekday(weekday);
+        setTimesPerDay(timesPerDay);
         //setLogs(logs);
       })
       .catch(err => {
@@ -38,15 +64,15 @@ export default function Chart() {
 
   const setChart = () => {
     let data = {
-      labels: dates,
+      labels: weekday,
       datasets: [{
         label: 'Hour',
         fill: false,
-        lineTension: 0.5,
+        lineTension: 0,
         backgroundColor: 'rgba(75,192,192,1)',
         borderColor: 'rgba(0,0,0,1)',
         borderWidth: 2,
-        data: hours
+        data: timesPerDay
       }]
     }
     setData(data);    
@@ -58,7 +84,7 @@ export default function Chart() {
   
   useEffect(() => {
     setChart();
-  }, [hours, dates])
+  }, [weekday, timesPerDay])
 
 
   return (
@@ -68,7 +94,7 @@ export default function Chart() {
         options={{
           title:{
             display:true,
-            text:'History Log Day Vs Hour',
+            text:'History Log Times a Day',
             fontSize:20
           },
           legend:{
