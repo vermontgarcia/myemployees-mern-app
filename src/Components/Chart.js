@@ -1,16 +1,37 @@
 import React, {useState, useEffect} from 'react';
 import {logHistory} from '../Services/logService';
+import {isLoggedIn, logout} from '../Services/authService';
 import { Radar } from 'react-chartjs-2';
+import { Layout } from 'antd';
+import FooterInfo from './FooterInfo';
+import Nav from './Nav';
 
-export default function Chart() {
+const { Header, Footer, Content } = Layout;
+
+
+
+export default function Chart(props) {
   
   //const [logs, setLogs] = useState([]);
   const [data, setData] = useState({});
+  const [user, setUser] = useState({});
   const [dates, setDates] = useState([]);
   const [hours, setHours] = useState([]);
   const [weekday, setWeekday] = useState([]);
   const [timesPerDay, setTimesPerDay] = useState([]);
   
+  const  handleLogOut = () => {
+    logout(props.history)
+  }
+
+  const handleLoggedIn = () => {
+    const token = localStorage.getItem('token');
+    token ? isLoggedIn(props.history) : props.history.push('/login');
+
+    const user = JSON.parse(localStorage.getItem('user'))
+    user ? setUser(user) : props.history.push('/login');
+  }
+
   const handleRequest = () => {
     logHistory()
       .then(res => {
@@ -80,6 +101,7 @@ export default function Chart() {
   
   useEffect(() => {
     handleRequest();
+    handleLoggedIn();
   }, [])
   
   useEffect(() => {
@@ -89,20 +111,30 @@ export default function Chart() {
 
   return (
     <div>
-      <Radar
-        data={data}
-        options={{
-          title:{
-            display:true,
-            text:'History Log Times a Day',
-            fontSize:20
-          },
-          legend:{
-            display:false,
-            position:'right'
-          }
-        }}
-      />
+      <Layout>
+        <Header>
+          <Nav user={user} handleLogOut={handleLogOut} />
+        </Header>
+        <Content>
+          <Radar
+            data={data}
+            options={{
+              title:{
+                display:true,
+                text:'History Logs vs Day',
+                fontSize:20
+              },
+              legend:{
+                display:false,
+                position:'right'
+              }
+            }}
+          />
+        </Content>
+        <Footer>
+          <FooterInfo/>
+        </Footer>
+      </Layout>
     </div>
   )
 }
