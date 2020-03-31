@@ -10,7 +10,7 @@ The goal of this is to keep a record of how frequent the directory is being used
 
 ### `Server` 
 
-– A server that can receive requests to save and read from a database that contains the list of employees and check-ins. A REST API with basic CRUD operations. The Server repo [myemployees-rest-api](https://github.com/vermontgarcia/myemployees-mern-app)
+– A server that can receive requests to save and read from a database that contains the list of employees and check-ins. A REST API with basic CRUD operations. The Server repo [myemployees-rest-api](https://github.com/vermontgarcia/myemployees-rest-api)
 
 ### `Client`
 
