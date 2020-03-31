@@ -23,11 +23,11 @@ The goal of this is to keep a record of how frequent the directory is being used
 
 ## The application also contains:
  
-User management module that allows **signup** and **login** providing Authentication and Authorizarion security.
+A User management module that allows **signup** and **login** providing Authentication and Authorizarion security.
 
-Finally the application displays in a simple **radar chart** the history of the check-ins over time displating the days of the week and the log activity recorded.
+A simple **radar chart** that displays the history of the check-ins over time displating the days of the week and the log activity recorded.
 
 ### Deployment
 
-To see the application running go to [My Employees APP](https://my-employees-2020.herokuapp.com/)
+To see the application up and running go to [My Employees APP](https://my-employees-2020.herokuapp.com/)
 
