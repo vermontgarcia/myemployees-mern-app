@@ -2,7 +2,7 @@
 import React, {useState, useEffect} from 'react';
 import {logHistory} from '../Services/logService';
 import {isLoggedIn, logout} from '../Services/authService';
-import { Layout, List, Avatar, Button, Skeleton } from 'antd';
+import { Layout, List, Avatar, Button, Skeleton, BackTop, Icon } from 'antd';
 import FooterInfo from './FooterInfo';
 import Nav from './Nav';
 
@@ -152,6 +152,11 @@ export default function Logs(props) {
           <FooterInfo/>
         </Footer>
       </Layout>
+      <div>
+          <BackTop id="back-top-custom">
+            <div className="ant-back-top-inner"><Icon type="to-top" /></div>
+          </BackTop>
+        </div>
     </div>
   )
 }
