@@ -28,7 +28,6 @@ class Chart extends Component {
     const token = localStorage.getItem('token');
     token ? isLoggedIn(this.props.history) : this.props.history.push('/login');
     const user = JSON.parse(localStorage.getItem('user'))
-    console.log('User =====> ', user)
     user ? this.setState({user}) : this.props.history.push('/login');
   }
 

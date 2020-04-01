@@ -1,8 +1,8 @@
 @import '~antd/dist/antd.css';
 
-
 .App {
   text-align: center;
+  background-color: rgb(240, 242, 245) !important;
 }
 
 .mouseHover:hover{
