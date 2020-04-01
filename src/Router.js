@@ -3,7 +3,7 @@ import {Switch, Route} from 'react-router-dom'
 import Home from './Components/Home';
 import Login from './Components/Login';
 import Signup from './Components/Signup';
-import Profile from './Components/Profile';
+import Logs from './Components/Logs';
 import Chart from './Components/Chart';
 
 
@@ -24,8 +24,8 @@ const Router = () => (
         {...props} 
       />)}
     />
-    <Route exact path='/profile' render={(props) => (
-      <Profile
+    <Route exact path='/logs' render={(props) => (
+      <Logs
         {...props} 
       />)}
     />

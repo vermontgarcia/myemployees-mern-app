@@ -14,6 +14,17 @@ export const writeLog = (log) => {
     });
 }
 
-export const logHistory = () => {
+export const logHistory = (pagination) => {
+
+  if(pagination){
+    return axios.get(`${base_url}/log`, {
+      headers: {
+        'page': pagination.page,
+        'size': pagination.size,
+      }
+    })
+  }
+
   return axios.get(`${base_url}/log`)
+
 }

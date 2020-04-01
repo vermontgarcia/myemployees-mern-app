@@ -11,8 +11,8 @@ import Nav from './Nav';
 const {Header, Footer, Content} = Layout;
 
 class Home extends Component {
-  constructor(){
-    super();
+  constructor(props){
+    super(props);
     this.state = {
       user: {},
       list: [],
