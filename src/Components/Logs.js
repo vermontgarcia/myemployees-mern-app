@@ -120,7 +120,7 @@ export default function Logs(props) {
                     avatar={
                       <Avatar src={item.userId.profilePicture} />
                     }
-                    title={`User "${item.userId.name}" generates a historic record"`}
+                    title={`User "${item.userId.name}" generated a historical record"`}
                     description={`Log Type: "${item.logName}" at "${item.created_at}"`}
                   />
                 </Skeleton>
