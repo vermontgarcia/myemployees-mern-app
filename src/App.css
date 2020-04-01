@@ -43,7 +43,7 @@
 
 .signup-envelop,
 .login-envelop{
-  margin-top: 50px;
+  margin-top: 1em;
   padding: 2em;
 }
 
@@ -145,6 +145,13 @@
   font-size: 2em;
   font-weight: 900;
   margin-top: 1em;
+}
+
+.load-more{
+  text-align: 'center';
+  margin-top: 1em;
+  height: 32px;
+  line-height: 32px;
 }
 
 @media only screen and (min-width: 600px) {

@@ -22,8 +22,6 @@ export default function Logs(props) {
   const [data, setData] = useState([]);
   const [list, setList] = useState([]);
 
-  
-  
   const  handleLogOut = () => {
     logout(props.history)
   }
@@ -31,13 +29,12 @@ export default function Logs(props) {
   const handleLoggedIn = () => {
     const token = localStorage.getItem('token');
     token ? isLoggedIn(props.history) : props.history.push('/login');
-
     const user = JSON.parse(localStorage.getItem('user'))
     user ? setUser(user) : props.history.push('/login');
   }
 
   const handleRequest = () => {
-    console.log(page);
+    if (initLoading){page=1}
     let pagination = {
       page: page,
       size: count,
@@ -45,31 +42,21 @@ export default function Logs(props) {
     logHistory(pagination)
     .then(res => {
       page++;
-      
       let logs = data.concat(res.data.logs);
-
       logs.forEach(log => {
-
         let logDate = new Date (log.created_at)
-
         let date = [...log.created_at ].slice(5,10).join("");
         let hour = logDate.getHours()
-
         log.date = date;
         log.hour = hour;
-
       });
-
       setLogs(logs);
       setData(logs);
       setList(logs);
       setLoading(false);
-        
-        
     })
     .then(()=>{
       setInitLoading (false);
-      
     })
     .catch(err => {
       console.log('ERROR =====> ',err)
@@ -102,14 +89,7 @@ export default function Logs(props) {
 
   const loadMore =
     !initLoading && !loading ? (
-      <div
-        style={{
-          textAlign: 'center',
-          marginTop: 12,
-          height: 32,
-          lineHeight: '32px',
-        }}
-      >
+      <div className='load-more'>
         <Button onClick={onLoadMore}>Load More</Button>
       </div>
     ) : null;

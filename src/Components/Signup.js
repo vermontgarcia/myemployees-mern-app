@@ -1,19 +1,18 @@
 import React, {Component} from 'react';
 import {Link} from 'react-router-dom';
 import {signup} from '../Services/authService';
-
-
 import {Form, Icon, Input, Button, Checkbox} from 'antd';
-
 
 const FormItem = Form.Item;
 
 class SignupForm extends Component {
-
-  state = {
-    confirmDirty: false,
-    autoCompleteResult: [],
-  };
+  constructor(props){
+    super(props);
+    this.state = {
+      confirmDirty: false,
+      autoCompleteResult: [],
+    };
+  }
 
   handleSubmit = (e) => {
     e.preventDefault();
@@ -46,11 +45,13 @@ class SignupForm extends Component {
     callback();
   }
 
-
   render(){
     const {getFieldDecorator} = this.props.form;
     return(
       <div className='signup-envelop'>
+        <div>
+          <h1>My Company</h1>
+        </div>
         <div>
           <img src='/logo192.png' alt='logo'/>
         </div>

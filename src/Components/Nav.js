@@ -46,19 +46,15 @@ class Nav extends Component {
           <div><Link to='/' ><Icon type="file-done" /> Employees</Link></div>
           <div><Link to='/logs' ><Icon type="file-search" /> Logs History</Link></div>
           <div><Link to='/logchart' ><Icon type="file-search" /> Log Char</Link></div>
-          
           <Divider />
           <div><Link to='/' ><Icon type="user" /> My Profile</Link></div>
           <div><Link to='/' ><Icon type="setting" /> Settings</Link></div>
           <Divider />
           <div onClick={this.props.handleLogOut} ><Link to=''><Icon type="logout" /> Log out</Link></div>
         </Drawer>
-
-
       </nav>
     )
   }
-
 }
 
 export default Nav;

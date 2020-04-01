@@ -1,8 +1,6 @@
 import React, {Component} from 'react';
 import {Link} from 'react-router-dom';
-
 import {login} from '../Services/authService'
-
 import {Form, Icon, Input, Button, Checkbox} from 'antd';
 
 const FormItem = Form.Item;
@@ -22,6 +20,9 @@ class LoginForm extends Component {
     const {getFieldDecorator} = this.props.form;
     return (
       <div className='login-envelop'>
+        <div>
+          <h1>My Company</h1>
+        </div>
         <div>
           <img src='/logo192.png' alt='logo'/>
         </div>

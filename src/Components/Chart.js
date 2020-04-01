@@ -27,7 +27,6 @@ class Chart extends Component {
   handleLoggedIn = () => {
     const token = localStorage.getItem('token');
     token ? isLoggedIn(this.props.history) : this.props.history.push('/login');
-
     const user = JSON.parse(localStorage.getItem('user'))
     console.log('User =====> ', user)
     user ? this.setState({user}) : this.props.history.push('/login');
@@ -37,23 +36,16 @@ class Chart extends Component {
     logHistory()
       .then(res => {
         let logs = res.data.logs;
-
         let timesPerDay = days;
         let weekday = week;
 
         logs.forEach(log => {
-
           let logDate = new Date (log.created_at)
-
           timesPerDay[logDate.getDay()] = timesPerDay[logDate.getDay()] + 1;
-
         });
-
         this.setState({weekday});
         this.setState({timesPerDay});
-
         this.setChart();
-
       })
       .catch(err => {
         console.log('ERROR =====> ',err)
@@ -79,9 +71,7 @@ class Chart extends Component {
 
   componentDidMount(){
     this.handleLoggedIn();
-    
     this.handleRequest();
-    
   }
 
   render() {
@@ -116,9 +106,6 @@ class Chart extends Component {
     )
   }
 }
-
-
-
 
 export default Chart;
   

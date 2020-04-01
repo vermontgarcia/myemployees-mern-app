@@ -14,7 +14,6 @@ const Employee = ({employee, handleLog}) => (
         title={employee.name}
         description={employee.position}
       />
-
     </Card>
   </div>
 )
